@@ -16,6 +16,16 @@ Bu proje, Sentient AI'nin Dobby-70B API'sini kullanarak Ubuntu üzerinde Python 
 - **Firework AI** hesabı ve API anahtarı.
 
 ## Kurulum Adımları
+**. Gerekli Yazılımların Kurulumu**
+
+Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları izleyin:
+
+- **Python ve Pip Kurulumu**: Python ve pip'in sisteminizde yüklü olduğundan emin olun. Eğer yüklü değilse, aşağıdaki komutları kullanarak kurabilirsiniz:
+
+  
+```bash
+  sudo apt update
+  sudo apt install python3 python3-pip
 
 ### 1. Firework AI'den API Anahtarı Alma
 
