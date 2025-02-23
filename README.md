@@ -1,9 +1,7 @@
 <img width="1230" alt="image" src="https://github.com/sezaras85/Sentient-ai/blob/main/sentient%20resim.png" />
 
-Sentient Foundation is pioneering a new era in AI, empowering communities to create Loyal AI—community-built, community-aligned, and community-owned. As a non-profit committed to advancing open-source AI technologies and building a decentralized, transparent ecosystem, its champion an Open AI economy where AI builders are key stakeholders.
+Sentient Foundation is pioneering a new era in AI, empowering communities to create Loyal AI—community-built, community-aligned, and community-owned. As a non-profit committed to advancing open-source AI technologies and building a decentralized, transparent ecosystem, its champion an Open AI economy where AI builders are key stakeholders. Now let's see how we can create an artificial intelligence robot using Python with the Ubuntu system using the Sentient's Dobby-70B API of the Sentient AI project.
 
-
-### README.md Dosyası İçeriği
 
 ```markdown
 # Sentient AI Dobby-70B ile Yapay Zeka Robotu
