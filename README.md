@@ -52,6 +52,7 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
    ```bash
    nano ai_robot.py
    
+   ### 3. Proje Dosyasını Oluşturma
    
 2. Aşağıdaki Python kodunu dosyaya ekleyin:
    ```bash
