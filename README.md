@@ -3,7 +3,7 @@
 Sentient Foundation, topluluklara Sadık AI yaratmaları için güç vererek AI'da yeni bir çağın öncülüğünü yapıyor: Topluluk tarafından oluşturulmuş, toplulukla uyumlu ve topluluk tarafından sahiplenilmiş. Açık kaynaklı AI teknolojilerini ilerletmeye ve merkezi olmayan, şeffaf bir ekosistem oluşturmaya kendini adamış bir kar amacı gütmeyen kuruluş olarak, AI oluşturucularının kilit paydaşlar olduğu bir Açık AI ekonomisini savunuyor. Şimdi, Sentient AI projesinin Sentient'in Dobby-70B API'sini kullanarak Ubuntu sistemiyle Python kullanarak bir yapay zeka robotu nasıl yaratabileceğimizi görelim.
 
 
-```markdown
+
 # Sentient AI Dobby-70B ile Yapay Zeka Robotu
 
 Bu proje, Sentient AI'nin Dobby-70B API'sini kullanarak Ubuntu üzerinde Python ile bir yapay zeka robotu oluşturmayı amaçlamaktadır. Firework AI sitesinden alınan API anahtarı ile Dobby-70B modeliyle etkileşime geçebilirsiniz.
