@@ -56,7 +56,7 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
 2. Aşağıdaki Python kodunu dosyaya ekleyin:
    ```bash
    
-   import os
+import os
 import requests
 from dotenv import load_dotenv
 
