@@ -51,9 +51,11 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
 1. Proje dizininde bir Python dosyası oluşturun:
    ```bash
    nano ai_robot.py
-   ```
+   
+   
 2. Aşağıdaki Python kodunu dosyaya ekleyin:
-   ```python
+   ```bash
+
 import os
 import requests
 from dotenv import load_dotenv
