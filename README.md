@@ -54,6 +54,8 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
    
    
 2. Aşağıdaki Python kodunu dosyaya ekleyin:
+   ```bash
+   
    import requests
 
    # Firework AI'den aldığınız API anahtarını buraya ekleyin
@@ -83,7 +85,7 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
            response = send_message_to_dobby(user_input)
            print(f"Dobby: {response}")
    ```
-3. Dosyayı kaydedin ve kapatın (`Ctrl + X`, ardından `Y` ve `Enter`).
+4. Dosyayı kaydedin ve kapatın (`Ctrl + X`, ardından `Y` ve `Enter`).
 
 
 ### 4. Projeyi Çalıştırma
