@@ -92,3 +92,6 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
    python3 ai_robot.py
    ```
 2. Artık Dobby-70B API'si ile etkileşime geçebilirsiniz. Kullanıcı girdilerinizi yazabilir ve Dobby'nin yanıtlarını görebilirsiniz.
+3. 
+
+<img width="1230" alt="image" src="https://github.com/sezaras85/Sentient-ai/blob/main/sentient%203.png" />
