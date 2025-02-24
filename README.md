@@ -54,36 +54,53 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
    ```
 2. Aşağıdaki Python kodunu dosyaya ekleyin:
    ```python
-   import requests
+import os
+import requests
+from dotenv import load_dotenv
 
-   # Firework AI'den aldığınız API anahtarını buraya ekleyin
-   API_KEY = 'YOUR_API_KEY_HERE'
-   API_URL = 'https://api.firework.ai/v1/dobby-70b'
+# API anahtarını güvenli bir şekilde yükle
+load_dotenv()
+API_KEY = os.getenv("FIREWORKS_API_KEY")
 
-   def send_message_to_dobby(message):
-       headers = {
-           'Authorization': f'Bearer {API_KEY}',
-           'Content-Type': 'application/json'
-       }
-       data = {
-           'prompt': message,
-           'max_tokens': 150
-       }
-       response = requests.post(API_URL, headers=headers, json=data)
-       if response.status_code == 200:
-           return response.json()['choices'][0]['text']
-       else:
-           return f"Error: {response.status_code}, {response.text}"
+API_URL = "https://api.fireworks.ai/inference/v1/chat/completions"
 
-   if __name__ == "__main__":
-       while True:
-           user_input = input("You: ")
-           if user_input.lower() in ['exit', 'quit']:
-               break
-           response = send_message_to_dobby(user_input)
-           print(f"Dobby: {response}")
-   ```
-3. Dosyayı kaydedin ve kapatın (`Ctrl + X`, ardından `Y` ve `Enter`).
+# Fireworks AI’ye mesaj gönderen fonksiyon
+def chatbot(prompt):
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "model": "accounts/sentientfoundation/models/dobby-unhinged-llama-3-3-70b-new",
+        "max_tokens": 1024,
+        "top_p": 1,
+        "top_k": 40,
+        "presence_penalty": 0,
+        "frequency_penalty": 0,
+        "temperature": 0.6,
+        "messages": [{"role": "user", "content": prompt}]
+    }
+
+    response = requests.post(API_URL, json=data, headers=headers)
+
+    if response.status_code == 200:
+        return response.json().get("choices")[0].get("message").get("content")
+    else:
+        return f"API Hatası: {response.text}"
+
+# Kullanıcıdan giriş al ve API'ye gönder
+if __name__ == "__main__":
+    print("Sentient AI Chatbot'a hoş geldiniz! (Çıkmak için 'exit' yazın)")
+    while True:
+        user_input = input("Sen: ")
+        if user_input.lower() == "exit":
+            break
+        response = chatbot(user_input)
+        print(f"Bot: {response}")
+```
+ Dosyayı kaydedin ve kapatın (`Ctrl + X`, ardından `Y` ve `Enter`).
 
 ### 4. Projeyi Çalıştırma
 
