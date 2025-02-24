@@ -27,7 +27,7 @@ Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları 
   sudo apt update
   sudo apt install python3 python3-pip
 
-### 1. Firework AI'den API Anahtarı Alma
+# 1. Firework AI'den API Anahtarı Alma
 
 1. [Firework AI](https://firework.ai) web sitesine gidin.
 2. Hesabınıza giriş yapın veya yeni bir hesap oluşturun.
