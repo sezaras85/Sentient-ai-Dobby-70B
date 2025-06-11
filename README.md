@@ -158,6 +158,7 @@ client.run(DISCORD_BOT_TOKEN)
 
 6. Discord enable required permissions
    
+```bash
 Go to discord developer page
  https://discord.com/developers/applications
 
@@ -168,6 +169,7 @@ Activate the following 3 settings in the “Privileged Gateway Intents” sectio
 -Presence Intent (optional, for online status)
 
 -Server Members Intent (optional, if member information is required)
+```
 
 7.Invite Bot to Your Server (OAuth2)
 
