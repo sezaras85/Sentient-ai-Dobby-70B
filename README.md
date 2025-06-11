@@ -1,119 +1,201 @@
 <img width="1230" alt="image" src="https://github.com/sezaras85/Sentient-ai/blob/main/sentient%20resim.png" />
 
-Sentient Foundation, topluluklara Sadık AI yaratmaları için güç vererek AI'da yeni bir çağın öncülüğünü yapıyor: Topluluk tarafından oluşturulmuş, toplulukla uyumlu ve topluluk tarafından sahiplenilmiş. Açık kaynaklı AI teknolojilerini ilerletmeye ve merkezi olmayan, şeffaf bir ekosistem oluşturmaya kendini adamış bir kar amacı gütmeyen kuruluş olarak, AI oluşturucularının kilit paydaşlar olduğu bir Açık AI ekonomisini savunuyor. Şimdi, Sentient AI projesinin Sentient'in Dobby-70B API'sini kullanarak Ubuntu sistemiyle Python kullanarak bir yapay zeka robotu nasıl yaratabileceğimizi görelim.
 
+# Sentient AI Dobby Discord Bot
 
+This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model.
 
-# Sentient AI Dobby-70B ile Yapay Zeka Robotu
+## Features
 
-Bu proje, Sentient AI'nin Dobby-70B API'sini kullanarak Ubuntu üzerinde Python ile bir yapay zeka robotu oluşturmayı amaçlamaktadır. Firework AI sitesinden alınan API anahtarı ile Dobby-70B modeliyle etkileşime geçebilirsiniz.
+- Uses Sentient's Dobby model (`dobby-unhinged-llama-3-3-70b-new`)
+- Friendly, filtered replies
+- Basic profanity filter
+- Async Discord client
 
-## Gereksinimler
-
-- **Ubuntu** işletim sistemi (tercihen en son sürüm).
-- **Python 3.8 veya üzeri**.
-- **pip** (Python paket yöneticisi).
-- **Firework AI** hesabı ve API anahtarı.
-
-## Kurulum Adımları
-**. Gerekli Yazılımların Kurulumu**
-
-Ubuntu sisteminizde gerekli yazılımları kurmak için aşağıdaki adımları izleyin:
-
-- **Python ve Pip Kurulumu**: Python ve pip'in sisteminizde yüklü olduğundan emin olun. Eğer yüklü değilse, aşağıdaki komutları kullanarak kurabilirsiniz:
-
+ 1. Install dependencies:
   
 ```bash
-  sudo apt update
-  sudo apt install python3 python3-pip
+  pip install discord.py requests
+
 ```
 
-# 1. Firework AI'den API Anahtarı Alma
+2. Get an API Key from Firework AI
+   
+ ```bash
+1. Go to the [Firework AI](https://firework.ai) website.
+2. Log in to your account or create a new account.
+3. Go to the **API Keys** section and create a new API key.
+4. Save the generated API key in a safe place.
 
-1. [Firework AI](https://firework.ai) web sitesine gidin.
-2. Hesabınıza giriş yapın veya yeni bir hesap oluşturun.
-3. **API Keys** bölümüne gidin ve yeni bir API anahtarı oluşturun.
-4. Oluşturulan API anahtarını güvenli bir yere kaydedin.
-
-### 2. Python Ortamının Hazırlanması
-
-1. Terminali açın ve Python ve pip'in kurulu olduğunu kontrol edin:
-   ```bash
-   python3 --version
-   pip3 --version
-   ```
-2. Gerekli Python kütüphanelerini yükleyin:
-   ```bash
-   pip3 install requests
    ```
 
-### 3. Proje Dosyasını Oluşturma
+3. Creating a Discord Bot (Developer Portal)
 
-1. Proje dizininde bir Python dosyası oluşturun:
-   ```bash
-   nano ai_robot.py
-   
+```bash
+Go to Discord Developer Portal.
+https://discord.com/developers
 
-### 4. Aşağıdaki Python kodunu dosyaya ekleyin:
-   ```bash
+“New Application” → name your bot.
+
+From the left menu “Bot” → “Add Bot” → Yes, do it!
+
+You will see the Bot Token here → copy it (keep it private).
+*Don't forget to save your Discor_Bot_Token
+
+```
+
+4. Generate Python Code
    
-import os
+```bash
+   nano bot.py
+```
+5. enter your own keys FIREWORKS_API_KEY = "YOUR_FIREWORKS_API_KEY" and DISCORD_BOT_TOKEN = "YOUR_DISCORD_BOT_TOKEN"
+
+write code save it with ctrl+O.
+
+```bash
+import discord
 import requests
-from dotenv import load_dotenv
+import re
 
-# API anahtarını güvenli bir şekilde yükle
-load_dotenv()
-API_KEY = os.getenv("FIREWORKS_API_KEY")
+# Fireworks AI API credentials
+FIREWORKS_API_KEY = "YOUR_FIREWORKS_API_KEY"
+FIREWORKS_API_URL = "https://api.fireworks.ai/inference/v1/completions"
 
-API_URL = "https://api.fireworks.ai/inference/v1/chat/completions"
+# Discord bot token
+DISCORD_BOT_TOKEN = "YOUR_DISCORD_BOT_TOKEN"
 
-# Fireworks AI’ye mesaj gönderen fonksiyon
-def chatbot(prompt):
+# Discord client permissions
+intents = discord.Intents.default()
+intents.message_content = True  # Needed to read user messages
+
+# Initialize bot
+client = discord.Client(intents=intents)
+
+# List of profane and toxic words (can be expanded)
+BAD_WORDS = [
+    "fuck", "shit", "bitch", "asshole", "damn", "dick", "piss", "fucking", "motherfucker",
+    "cunt", "fag", "retard", "nigger", "dyke", "slut", "whore", "bollocks", "arsehole"
+]
+
+def clean_toxic_language(text):
+    """Censors profane and toxic language, reduces repeated characters, and softens excessive shouting."""
+    
+    # Censor bad words
+    for word in BAD_WORDS:
+        pattern = re.compile(rf"\b{word}\b", re.IGNORECASE)
+        text = pattern.sub("[censored]", text)
+
+    # Reduce excessively repeated characters (e.g. aaaa -> aaa)
+    text = re.sub(r'(.)\1{3,}', r'\1\1\1', text)
+
+    # Soften ALL-CAPS words (yelling)
+    def fix_caps(m):
+        word = m.group()
+        return word.capitalize() if len(word) > 2 else word
+    text = re.sub(r'\b[A-Z]{3,}\b', fix_caps, text)
+
+    # Replace specific aggressive phrases
+    aggressive_replacements = {
+        r"fuck off": "[censored]",
+        r"shut up": "[please be kind]",
+        r"bitch": "[censored]",
+        r"dogshit": "bad",
+        r"idiot": "a bit careless",
+    }
+    for pattern, replacement in aggressive_replacements.items():
+        text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
+
+    return text.strip()
+
+def generate_reply(message_text):
+    """Generates a reply using Fireworks AI"""
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Accept": "application/json",
+        "Authorization": f"Bearer {FIREWORKS_API_KEY}",
         "Content-Type": "application/json"
     }
 
-    data = {
+    prompt = f'Reply to this Discord message in a helpful, friendly tone: "{message_text}"'
+
+    payload = {
         "model": "accounts/sentientfoundation/models/dobby-unhinged-llama-3-3-70b-new",
-        "max_tokens": 1024,
-        "top_p": 1,
-        "top_k": 40,
-        "presence_penalty": 0,
-        "frequency_penalty": 0,
-        "temperature": 0.6,
-        "messages": [{"role": "user", "content": prompt}]
+        "prompt": prompt,
+        "max_tokens": 240,
+        "temperature": 0.7,
+        "top_p": 0.9
     }
 
-    response = requests.post(API_URL, json=data, headers=headers)
+    try:
+        response = requests.post(FIREWORKS_API_URL, json=payload, headers=headers)
+        response.raise_for_status()
+        reply = response.json().get("choices", [{}])[0].get("text", "").strip()
+        cleaned_reply = clean_toxic_language(reply)
+        return cleaned_reply if cleaned_reply else "Sorry, I didn't understand that."
+    except Exception as e:
+        print(f"❌ Fireworks API Error: {e}")
+        return "Something went wrong 😞"
 
-    if response.status_code == 200:
-        return response.json().get("choices")[0].get("message").get("content")
-    else:
-        return f"API Hatası: {response.text}"
+@client.event
+async def on_ready():
+    print(f"✅ Logged in as: {client.user}")
 
-# Kullanıcıdan giriş al ve API'ye gönder
-if __name__ == "__main__":
-    print("Sentient AI Chatbot'a hoş geldiniz! (Çıkmak için 'exit' yazın)")
-    while True:
-        user_input = input("Sen: ")
-        if user_input.lower() == "exit":
-            break
-        response = chatbot(user_input)
-        print(f"Bot: {response}")
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return  # Don't respond to own messages
 
-   ```
-4. Dosyayı kaydedin ve kapatın (`Ctrl + X`, ardından `Y` ve `Enter`).
+    if message.content.startswith("!"):
+        return  # Skip bot commands
+
+    reply = generate_reply(message.content)
+    await message.channel.send(reply)
+
+# Run the bot
+client.run(DISCORD_BOT_TOKEN)
+
+```
 
 
-### 4. Projeyi Çalıştırma
+6. Discord enable required permissions
+   
+Go to discord developer page
+ https://discord.com/developers/applications
 
-1. Terminalde aşağıdaki komutu çalıştırarak Python scriptini başlatın:
-   ```bash
-   python3 ai_robot.py
-   ```
-2. Artık Dobby-70B API'si ile etkileşime geçebilirsiniz. Kullanıcı girdilerinizi yazabilir ve Dobby'nin yanıtlarını görebilirsiniz.
-3. 
+Activate the following 3 settings in the “Privileged Gateway Intents” section on the bottom left:
 
-<img width="1230" alt="image" src="https://github.com/sezaras85/Sentient-ai/blob/main/sentient%203.png" />
+-Message Content Intent (can read user messages)
+
+-Presence Intent (optional, for online status)
+
+-Server Members Intent (optional, if member information is required)
+
+7.Invite Bot to Your Server (OAuth2)
+
+```bash
+Go to the “OAuth2 → URL Generator” tab on the left menu.
+
+Select the following boxes:
+
+Scopes: ✅ bot
+
+Bot Permissions:
+
+✅ Send Messages
+
+✅ Read Message History
+
+✅ View Channels
+
+✅ Read Messages/View Channels
+
+✅ Mention Everyone (if you want)
+
+Copy the generated URL at the bottom of the page and paste it into your browser.
+
+Invite the bot to your server.
+
+```
+
+
+
+ 
