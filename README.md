@@ -12,14 +12,10 @@ This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model.
 - Basic profanity filter
 - Async Discord client
 
- 1. Install dependencies:
-  
-```bash
-  pip install discord.py requests
+ 
 
-```
 
-2. Get an API Key from Firework AI
+1. Get an API Key from Firework AI
    
  ```bash
 1. Go to the [Firework AI](https://firework.ai) website.
@@ -29,7 +25,7 @@ This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model.
 
    ```
 
-3. Creating a Discord Bot (Developer Portal)
+2. Creating a Discord Bot (Developer Portal)
 
 ```bash
 Go to Discord Developer Portal.
@@ -41,6 +37,13 @@ From the left menu “Bot” → “Add Bot” → Yes, do it!
 
 You will see the Bot Token here → copy it (keep it private).
 *Don't forget to save your Discor_Bot_Token
+
+```
+
+3. Install dependencies:
+  
+```bash
+  pip install discord.py requests
 
 ```
 
@@ -154,9 +157,15 @@ async def on_message(message):
 client.run(DISCORD_BOT_TOKEN)
 
 ```
+6. Run the bot
+
+```bash
+ python3 bot.py
+
+```
 
 
-6. Discord enable required permissions
+8. Discord enable required permissions
    
 ```bash
 Go to discord developer page
@@ -171,7 +180,7 @@ Activate the following 3 settings in the “Privileged Gateway Intents” sectio
 -Server Members Intent (optional, if member information is required)
 ```
 
-7.Invite Bot to Your Server (OAuth2)
+8.Invite Bot to Your Server (OAuth2)
 
 ```bash
 Go to the “OAuth2 → URL Generator” tab on the left menu.
