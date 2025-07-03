@@ -28,7 +28,7 @@ This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model..
 2. Creating a Discord Bot (Developer Portal)
 
 ```bash
-Go to Discord Developer Portal.
+Go to Discord Developer Portal..
 https://discord.com/developers
 
 “New Application” → name your bot.
