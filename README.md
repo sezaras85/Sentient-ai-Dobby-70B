@@ -3,7 +3,7 @@
 
 # Sentient AI Dobby Discord Bot s
 
-This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model.
+This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model..
 
 ## Features
 
