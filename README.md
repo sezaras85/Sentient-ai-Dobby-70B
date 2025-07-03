@@ -20,7 +20,7 @@ This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model..
  ```bash
 1. Go to the [Firework AI](https://firework.ai) website.
 2. Log in to your account or create a new account.
-3. Go to the **API Keys** section and create a new API key.
+3. Go to the **API Keys** section and create a new API key..
 4. Save the generated API key in a safe place.
 
    ```
