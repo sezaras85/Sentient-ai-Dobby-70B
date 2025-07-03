@@ -191,7 +191,7 @@ Scopes: ✅ bot
 
 Bot Permissions:
 
-✅ Send Messages
+✅ Send Messagess
 
 ✅ Read Message History
 
