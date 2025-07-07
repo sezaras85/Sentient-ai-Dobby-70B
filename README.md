@@ -15,7 +15,7 @@ This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model..
  
 
 
-1. Get an API Key from Firework AI
+1. Get an API Key from Firework AI.
    
  ```bash
 1. Go to the [Firework AI](https://firework.ai) website.
