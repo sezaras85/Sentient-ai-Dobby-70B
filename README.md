@@ -1,7 +1,7 @@
 <img width="1230" alt="image" src="https://github.com/sezaras85/Sentient-ai/blob/main/sentient%20resim.png" />
 
 
-# Sentient AI Dobby Discord Bot 
+# Sentient AI Dobby Discord Bot .
 
 This is a simple Discord chatbot using Fireworks AI's **Dobby-70B** model..
 
