@@ -40,7 +40,7 @@ You will see the Bot Token here → copy it (keep it private).
 
 ```
 
-3. Install dependencieses:
+3. Install dependencieses:.
   
 ```bash
   pip install discord.py requests
